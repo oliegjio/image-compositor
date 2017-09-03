@@ -5,62 +5,82 @@ using namespace std;
 
 MainWindow::MainWindow()
 {
+    bigImagePath = QString("./image.jpg");
+
     initialSize = new QSize(1200, 800);
     setFixedSize(*initialSize);
 
-    interfaceArea = new QWidget; 
+    interfaceArea = new QWidget(); 
     setCentralWidget(interfaceArea);
-    interfaceArea->show();
 
-    mainLayout = new QGridLayout;
+    mainLayout = new QVBoxLayout();
 
-    QWidget *centralWidget = new QWidget;
-    mainLayout->addWidget(centralWidget, 0, 0, 1, 0);
+    centralLayout = new QHBoxLayout();
+    mainLayout->addLayout(centralLayout);
 
-    bigImage = new QLabel(centralWidget);
-    bigImage->setPixmap(QPixmap("image.jpg"));
-    bigImage->setAlignment(Qt::AlignCenter);
-    bigImage->setFixedSize(*initialSize);
-    bigImage->show();
-
-    smallImage = new QLabel(centralWidget);
+    smallImage = new QLabel();
     smallImage->setPixmap(QPixmap("image2.jpg"));
     smallImage->setAlignment(Qt::AlignCenter);
     smallImage->setFixedSize(300, 300);
-    smallImage->show();
-    
-    bigSearch = new QPlainTextEdit;
-    bigSearch->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    bigSearch->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    bigSearch->setFixedHeight(24);
-    mainLayout->addWidget(bigSearch, 1, 0);
-    bigSearch->show();
+    centralLayout->addWidget(smallImage, 1, Qt::AlignCenter);
 
-    smallSearch = new QPlainTextEdit;
-    smallSearch->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    smallSearch->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    smallSearch->setFixedHeight(24);
-    mainLayout->addWidget(smallSearch, 1, 1);
-    smallSearch->show();
+    bottomLayout = new QHBoxLayout();
+    mainLayout->addLayout(bottomLayout);
+
+    searchButtonBig = new QPushButton("Search");
+    bottomLayout->addWidget(searchButtonBig);
+    connect(searchButtonBig, SIGNAL(clicked()), this, SLOT(handleSearchButtonBig()));
+
+    applyButtonBig = new QPushButton("Apply");
+    bottomLayout->addWidget(applyButtonBig);
+    connect(applyButtonBig, SIGNAL(clicked()), this, SLOT(handleApplyButtonBig()));
+    
+    bigSearch = new QLineEdit();
+    bottomLayout->addWidget(bigSearch);
+    connect(bigSearch, SIGNAL(returnPressed()), this, SLOT(handleBigSearchReturn()));
+
+    QFrame* separator = new QFrame();
+    separator->setFixedWidth(30);
+    bottomLayout->addWidget(separator);
+
+    smallSearch = new QLineEdit();
+    bottomLayout->addWidget(smallSearch);
+
+    applyButtonSmall = new QPushButton("Apply");
+    bottomLayout->addWidget(applyButtonSmall);
+
+    searchButtonSmall = new QPushButton("Search");
+    bottomLayout->addWidget(searchButtonSmall);
 
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
     interfaceArea->setLayout(mainLayout);
 };
 
-void MainWindow::resizeEvent(QResizeEvent *event)
+void MainWindow::handleSearchButtonBig()
 {
-    QSize size = event->size();
-    bigImage->setFixedSize(size);
+    bigImagePath = QFileDialog::getOpenFileName();
+    bigSearch->setText(bigImagePath);
+    repaint();
+}
 
-    int bigImageWidth = bigImage->width();
-    int bigImageHeight = bigImage->height();
+void MainWindow::handleApplyButtonBig() 
+{
+    bigImagePath = bigSearch->text();
+    repaint();
+}
 
-    int newSmallImageWidth = bigImageWidth / 4;
-    int newSmallImageHeight = bigImageHeight / 4;
-    smallImage->setFixedSize(newSmallImageWidth, newSmallImageHeight);
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    QPixmap image(bigImagePath);
+    float x = -(image.width() - width()) / 2;
+    float y = -(image.height() - height()) / 2;
+    painter.drawPixmap(x, y, image);
+}
 
-    int centerCoordinateX = (bigImageWidth / 2) - newSmallImageWidth / 2;
-    int centerCoordinateY = (bigImageHeight / 2) - (newSmallImageHeight / 2);
-    smallImage->move(centerCoordinateX, centerCoordinateY);
-};
+void MainWindow::handleBigSearchReturn()
+{
+    bigImagePath = bigSearch->text();
+    repaint();
+}

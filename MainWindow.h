@@ -8,24 +8,42 @@
 #include <QString>
 #include <QWidget>
 #include <QPixmap>
-#include <QPlainTextEdit>
+#include <QLineEdit>
+#include <QFileDialog>
+#include <QResizeEvent>
+#include <QHBoxLayout>
+#include <QFrame>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QVBoxLayout>
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    private slots:
+        void handleBigSearchReturn();
+        void handleSearchButtonBig();
+        void handleApplyButtonBig();
     private:
+        QString bigImagePath;
+        QPushButton *searchButtonBig;
+        QPushButton *applyButtonBig;
+        QPushButton *searchButtonSmall;
+        QPushButton *applyButtonSmall;
         QSize *initialSize;
         QWidget *interfaceArea;
-        QGridLayout *mainLayout;
+        QVBoxLayout *mainLayout;
+        QHBoxLayout *centralLayout;
+        QHBoxLayout *bottomLayout;
         QLabel *bigImage;
         QLabel *smallImage;
-        QPlainTextEdit *bigSearch;
-        QPlainTextEdit *smallSearch;
+        QLineEdit *bigSearch;
+        QLineEdit *smallSearch;
     public:
         MainWindow();
     protected:
-        void resizeEvent(QResizeEvent *event);
+        void paintEvent(QPaintEvent *event);
 };
 
 #endif
