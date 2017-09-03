@@ -51,9 +51,10 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = Main.cpp \
-		MainWindow.cpp 
+		MainWindow.cpp moc_MainWindow.cpp
 OBJECTS       = Main.o \
-		MainWindow.o
+		MainWindow.o \
+		moc_MainWindow.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -343,8 +344,14 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt -Wall -W -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_MainWindow.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_MainWindow.cpp
+moc_MainWindow.cpp: MainWindow.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/archie/Git/image-finder -I/home/archie/Git/image-finder -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/7.1.1 -I/usr/include/c++/7.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/7.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed -I/usr/include MainWindow.h -o moc_MainWindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
 compiler_uic_make_all:
@@ -355,7 +362,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
@@ -364,6 +371,9 @@ Main.o: Main.cpp MainWindow.h
 
 MainWindow.o: MainWindow.cpp MainWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
+
+moc_MainWindow.o: moc_MainWindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
 
 ####### Install
 

@@ -1,28 +1,66 @@
 #include "MainWindow.h"
-#include <QLabel>
-#include <QPushButton>
-#include <QGridLayout>
-#include <QString>
-#include <QWidget>
-#include <QPixmap>
-#include <QPlainTextEdit>
+#include <iostream>
+
+using namespace std;
 
 MainWindow::MainWindow()
 {
-    QWidget *interfaceArea = new QWidget; 
+    initialSize = new QSize(1200, 800);
+    setFixedSize(*initialSize);
+
+    interfaceArea = new QWidget; 
     setCentralWidget(interfaceArea);
+    interfaceArea->show();
 
-    QGridLayout *mainLayout = new QGridLayout;
+    mainLayout = new QGridLayout;
 
-    QLabel *bigImage = new QLabel;
+    QWidget *centralWidget = new QWidget;
+    mainLayout->addWidget(centralWidget, 0, 0, 1, 0);
+
+    bigImage = new QLabel(centralWidget);
     bigImage->setPixmap(QPixmap("image.jpg"));
-    mainLayout->addWidget(bigImage, 0, 0, 1, 0);
+    bigImage->setAlignment(Qt::AlignCenter);
+    bigImage->setFixedSize(*initialSize);
+    bigImage->show();
 
-    QPlainTextEdit *bigSearch = new QPlainTextEdit;
+    smallImage = new QLabel(centralWidget);
+    smallImage->setPixmap(QPixmap("image2.jpg"));
+    smallImage->setAlignment(Qt::AlignCenter);
+    smallImage->setFixedSize(300, 300);
+    smallImage->show();
+    
+    bigSearch = new QPlainTextEdit;
+    bigSearch->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    bigSearch->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    bigSearch->setFixedHeight(24);
     mainLayout->addWidget(bigSearch, 1, 0);
+    bigSearch->show();
 
-    QPlainTextEdit *smallSearch = new QPlainTextEdit;
+    smallSearch = new QPlainTextEdit;
+    smallSearch->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    smallSearch->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    smallSearch->setFixedHeight(24);
     mainLayout->addWidget(smallSearch, 1, 1);
+    smallSearch->show();
 
+    mainLayout->setSpacing(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     interfaceArea->setLayout(mainLayout);
+};
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    QSize size = event->size();
+    bigImage->setFixedSize(size);
+
+    int bigImageWidth = bigImage->width();
+    int bigImageHeight = bigImage->height();
+
+    int newSmallImageWidth = bigImageWidth / 4;
+    int newSmallImageHeight = bigImageHeight / 4;
+    smallImage->setFixedSize(newSmallImageWidth, newSmallImageHeight);
+
+    int centerCoordinateX = (bigImageWidth / 2) - newSmallImageWidth / 2;
+    int centerCoordinateY = (bigImageHeight / 2) - (newSmallImageHeight / 2);
+    smallImage->move(centerCoordinateX, centerCoordinateY);
 };
