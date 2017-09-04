@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "CentralImage.h"
 #include <QMainWindow>
 #include <QLabel>
 #include <QPushButton>
@@ -16,6 +17,9 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QVBoxLayout>
+#include <iostream>
+
+class CentralImage;
 
 class MainWindow : public QMainWindow
 {
@@ -26,6 +30,7 @@ class MainWindow : public QMainWindow
         void handleSearchButtonBig();
         void handleApplyButtonBig();
     private:
+        QPushButton *resetButton;
         QString bigImagePath;
         QPushButton *searchButtonBig;
         QPushButton *applyButtonBig;
@@ -34,13 +39,13 @@ class MainWindow : public QMainWindow
         QSize *initialSize;
         QWidget *interfaceArea;
         QVBoxLayout *mainLayout;
-        QHBoxLayout *centralLayout;
         QHBoxLayout *bottomLayout;
         QLabel *bigImage;
-        QLabel *smallImage;
+        CentralImage *smallImage;
         QLineEdit *bigSearch;
         QLineEdit *smallSearch;
     public:
+        QHBoxLayout *centralLayout;
         MainWindow();
     protected:
         void paintEvent(QPaintEvent *event);

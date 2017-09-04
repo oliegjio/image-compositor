@@ -51,10 +51,14 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = Main.cpp \
-		MainWindow.cpp moc_MainWindow.cpp
+		MainWindow.cpp \
+		CentralImage.cpp moc_MainWindow.cpp \
+		moc_CentralImage.cpp
 OBJECTS       = Main.o \
 		MainWindow.o \
-		moc_MainWindow.o
+		CentralImage.o \
+		moc_MainWindow.o \
+		moc_CentralImage.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -128,8 +132,10 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		image-finder.pro MainWindow.h Main.cpp \
-		MainWindow.cpp
+		image-finder.pro MainWindow.h \
+		CentralImage.h Main.cpp \
+		MainWindow.cpp \
+		CentralImage.cpp
 QMAKE_TARGET  = image-finder
 DESTDIR       = 
 TARGET        = image-finder
@@ -311,8 +317,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents MainWindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents Main.cpp MainWindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents MainWindow.h CentralImage.h $(DISTDIR)/
+	$(COPY_FILE) --parents Main.cpp MainWindow.cpp CentralImage.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -344,13 +350,22 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt -Wall -W -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_CentralImage.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp
-moc_MainWindow.cpp: MainWindow.h \
+	-$(DEL_FILE) moc_MainWindow.cpp moc_CentralImage.cpp
+moc_MainWindow.cpp: CentralImage.h \
+		MainWindow.h \
+		MainWindow.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/archie/Git/image-finder -I/home/archie/Git/image-finder -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/7.1.1 -I/usr/include/c++/7.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/7.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed -I/usr/include MainWindow.h -o moc_MainWindow.cpp
+
+moc_CentralImage.cpp: MainWindow.h \
+		CentralImage.h \
+		CentralImage.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/archie/Git/image-finder -I/home/archie/Git/image-finder -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/7.1.1 -I/usr/include/c++/7.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/7.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/7.1.1/include-fixed -I/usr/include CentralImage.h -o moc_CentralImage.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -366,14 +381,23 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 ####### Compile
 
-Main.o: Main.cpp MainWindow.h
+Main.o: Main.cpp MainWindow.h \
+		CentralImage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Main.o Main.cpp
 
-MainWindow.o: MainWindow.cpp MainWindow.h
+MainWindow.o: MainWindow.cpp MainWindow.h \
+		CentralImage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
+
+CentralImage.o: CentralImage.cpp CentralImage.h \
+		MainWindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CentralImage.o CentralImage.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
+
+moc_CentralImage.o: moc_CentralImage.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_CentralImage.o moc_CentralImage.cpp
 
 ####### Install
 

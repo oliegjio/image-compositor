@@ -1,9 +1,8 @@
 #include "MainWindow.h"
-#include <iostream>
 
 using namespace std;
 
-MainWindow::MainWindow()
+MainWindow::MainWindow() 
 {
     bigImagePath = QString("./image.jpg");
 
@@ -18,7 +17,10 @@ MainWindow::MainWindow()
     centralLayout = new QHBoxLayout();
     mainLayout->addLayout(centralLayout);
 
-    smallImage = new QLabel();
+    QWidget *empty = new QWidget();
+    centralLayout->addWidget(empty);
+
+    smallImage = new CentralImage(this);
     smallImage->setPixmap(QPixmap("image2.jpg"));
     smallImage->setAlignment(Qt::AlignCenter);
     smallImage->setFixedSize(300, 300);
@@ -39,9 +41,8 @@ MainWindow::MainWindow()
     bottomLayout->addWidget(bigSearch);
     connect(bigSearch, SIGNAL(returnPressed()), this, SLOT(handleBigSearchReturn()));
 
-    QFrame* separator = new QFrame();
-    separator->setFixedWidth(30);
-    bottomLayout->addWidget(separator);
+    resetButton = new QPushButton("Reset");
+    bottomLayout->addWidget(resetButton);
 
     smallSearch = new QLineEdit();
     bottomLayout->addWidget(smallSearch);
