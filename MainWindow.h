@@ -5,7 +5,6 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <QPushButton>
-#include <QGridLayout>
 #include <QString>
 #include <QWidget>
 #include <QPixmap>
@@ -13,12 +12,9 @@
 #include <QFileDialog>
 #include <QResizeEvent>
 #include <QHBoxLayout>
-#include <QFrame>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QVBoxLayout>
-#include <iostream>
-#include <QList>
 
 class CentralImage;
 

@@ -1,7 +1,5 @@
 #include "MainWindow.h"
 
-using namespace std;
-
 MainWindow::MainWindow() 
 {
     bigImagePath = QString("./image.jpg");
@@ -15,7 +13,6 @@ MainWindow::MainWindow()
     mainLayout = new QVBoxLayout();
 
     centralLayout = new QHBoxLayout();
-    // centralLayout->setContentsMargins(250, 0, 250, 0);
     centralLayout->setSizeConstraint(QLayout::SetMinimumSize);
     mainLayout->addLayout(centralLayout);
 
