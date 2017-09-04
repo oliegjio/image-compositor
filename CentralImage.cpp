@@ -15,3 +15,8 @@ void CentralImage::handleCloseButton()
     father->centralLayout->removeWidget(this);
     delete this;
 }
+
+void CentralImage::mousePressEvent(QMouseEvent *event)
+{
+    raise();
+}

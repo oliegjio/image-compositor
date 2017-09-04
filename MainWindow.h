@@ -18,6 +18,7 @@
 #include <QPainter>
 #include <QVBoxLayout>
 #include <iostream>
+#include <QList>
 
 class CentralImage;
 
@@ -26,9 +27,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     private slots:
-        void handleBigSearchReturn();
-        void handleSearchButtonBig();
-        void handleApplyButtonBig();
+        void handleResetButtonClicked();
+        void handleBigSearchReturnPressed();
+        void handleSearchButtonBigClicked();
+        void handleApplyButtonBigClicked();
+        void handleSmallSearchReturnPressed();
+        void handleSearchButtonSmallClicked();
     private:
         QPushButton *resetButton;
         QString bigImagePath;

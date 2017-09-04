@@ -1,9 +1,9 @@
 #ifndef CENTRALIMAGE_H
 #define CENTRALIMAGE_H
 
+#include "MainWindow.h"
 #include <QLabel>
 #include <QPushButton>
-#include "MainWindow.h"
 
 class MainWindow;
 
@@ -18,6 +18,8 @@ class CentralImage : public QLabel
         MainWindow *father;
     private slots:
         void handleCloseButton();
+    protected:
+        void mousePressEvent(QMouseEvent *event);
 };
 
 #endif
