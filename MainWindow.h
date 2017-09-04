@@ -33,6 +33,7 @@ class MainWindow : public QMainWindow
         void handleApplyButtonBigClicked();
         void handleSmallSearchReturnPressed();
         void handleSearchButtonSmallClicked();
+        void handleApplyButtonSmallClicked();
     private:
         QPushButton *resetButton;
         QString bigImagePath;

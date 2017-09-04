@@ -47,6 +47,7 @@ MainWindow::MainWindow()
 
     applyButtonSmall = new QPushButton("Apply");
     bottomLayout->addWidget(applyButtonSmall);
+    connect(applyButtonSmall, SIGNAL(clicked()), this, SLOT(handleApplyButtonSmallClicked()));
 
     searchButtonSmall = new QPushButton("Search");
     bottomLayout->addWidget(searchButtonSmall);
@@ -111,6 +112,15 @@ void MainWindow::handleSearchButtonSmallClicked()
 
     CentralImage *newImage = new CentralImage(this);
     newImage->setPixmap(QPixmap(imagePath));
+    newImage->setAlignment(Qt::AlignCenter);
+    newImage->setFixedSize(300, 300);
+    centralLayout->addWidget(newImage, 1, Qt::AlignCenter);
+}
+
+void MainWindow::handleApplyButtonSmallClicked()
+{
+    CentralImage *newImage = new CentralImage(this);
+    newImage->setPixmap(QPixmap(smallSearch->text()));
     newImage->setAlignment(Qt::AlignCenter);
     newImage->setFixedSize(300, 300);
     centralLayout->addWidget(newImage, 1, Qt::AlignCenter);
