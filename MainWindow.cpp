@@ -4,7 +4,7 @@ MainWindow::MainWindow()
 {
     bigImagePath = QString("./image.jpg");
 
-    initialSize = new QSize(1200, 800);
+    initialSize = new QSize(1200, 700);
     setFixedSize(*initialSize);
 
     interfaceArea = new QWidget(); 
