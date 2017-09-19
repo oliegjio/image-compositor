@@ -12,43 +12,68 @@ MainWindow::MainWindow()
 
     mainLayout = new QVBoxLayout();
 
-    centralLayout = new QHBoxLayout();
-    centralLayout->setSizeConstraint(QLayout::SetMinimumSize);
-    mainLayout->addLayout(centralLayout);
+    mainLayout->addStretch(1);
+    
+    topLayout = new QHBoxLayout();
+    mainLayout->addLayout(topLayout);
+    topLayout->setMargin(20);
 
-    QWidget *empty = new QWidget();
-    centralLayout->addWidget(empty);
+    mainLayout->addStretch(1);
 
-    bottomLayout = new QHBoxLayout();
+    middleLayout = new QHBoxLayout();
+    mainLayout->addLayout(middleLayout);
+    middleLayout->setMargin(20);
+
+    mainLayout->addStretch(1);
+
+    bottomLayout = new QVBoxLayout();
     mainLayout->addLayout(bottomLayout);
+    
+    searchTopLayout = new QHBoxLayout();
+    bottomLayout->addLayout(searchTopLayout);
+
+    searchBottomLayout = new QHBoxLayout();
+    bottomLayout->addLayout(searchBottomLayout);
 
     searchButtonBig = new QPushButton("Search");
-    bottomLayout->addWidget(searchButtonBig);
+    searchBottomLayout->addWidget(searchButtonBig);
     connect(searchButtonBig, SIGNAL(clicked()), this, SLOT(handleSearchButtonBigClicked()));
 
     applyButtonBig = new QPushButton("Apply");
-    bottomLayout->addWidget(applyButtonBig);
+    searchBottomLayout->addWidget(applyButtonBig);
     connect(applyButtonBig, SIGNAL(clicked()), this, SLOT(handleApplyButtonBigClicked()));
     
     bigSearch = new QLineEdit();
-    bottomLayout->addWidget(bigSearch);
+    searchBottomLayout->addWidget(bigSearch);
     connect(bigSearch, SIGNAL(returnPressed()), this, SLOT(handleBigSearchReturnPressed()));
 
     resetButton = new QPushButton("Reset");
-    bottomLayout->addWidget(resetButton);
+    searchBottomLayout->addWidget(resetButton);
     connect(resetButton, SIGNAL(clicked()), this, SLOT(handleResetButtonClicked()));
 
-    smallSearch = new QLineEdit();
-    bottomLayout->addWidget(smallSearch);
-    connect(smallSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallSearchReturnPressed()));
+    smallBottomApplyButton = new QPushButton("Apply");
+    searchTopLayout->addWidget(smallBottomApplyButton);
+    // connect(smallBottomApplyButton, SIGNAL(clicked()), this, SLOT(handleSmallTopApplyButtonClicked()));
 
-    applyButtonSmall = new QPushButton("Apply");
-    bottomLayout->addWidget(applyButtonSmall);
-    connect(applyButtonSmall, SIGNAL(clicked()), this, SLOT(handleApplyButtonSmallClicked()));
+    smallBottomSearchButton = new QPushButton("Search");
+    searchTopLayout->addWidget(smallBottomSearchButton);
+    // connect(smallBottomSearchButton, SIGNAL(clicked()), this, SLOT(handleSmallTopSearchButtonClicked()));
 
-    searchButtonSmall = new QPushButton("Search");
-    bottomLayout->addWidget(searchButtonSmall);
-    connect(searchButtonSmall, SIGNAL(clicked()), this, SLOT(handleSearchButtonSmallClicked()));
+    smallBottomSearch = new QLineEdit();
+    searchTopLayout->addWidget(smallBottomSearch);
+    connect(smallBottomSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallBottomSearchReturnPressed()));
+
+    smallTopSearch = new QLineEdit();
+    searchTopLayout->addWidget(smallTopSearch);
+    connect(smallTopSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallTopSearchReturnPressed()));
+
+    smallTopApplyButton = new QPushButton("Apply");
+    searchTopLayout->addWidget(smallTopApplyButton);
+    connect(smallTopApplyButton, SIGNAL(clicked()), this, SLOT(handleSmallTopApplyButtonClicked()));
+
+    smallTopSearchButton = new QPushButton("Search");
+    searchTopLayout->addWidget(smallTopSearchButton);
+    connect(smallTopSearchButton, SIGNAL(clicked()), this, SLOT(handleSmallTopSearchButtonClicked()));
 
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -87,38 +112,50 @@ void MainWindow::handleBigSearchReturnPressed()
 
 void MainWindow::handleResetButtonClicked()
 {
-    while (QLayoutItem *item = centralLayout->takeAt(0))
+    while (QLayoutItem *item = topLayout->takeAt(0))
+        delete item->widget();
+    while (QLayoutItem *item = middleLayout->takeAt(0))
         delete item->widget();
 
-    QWidget *empty = new QWidget();
-    centralLayout->addWidget(empty);
+    // QWidget *empty = new QWidget();
+    // imagesTopLayout->addWidget(empty);
 }
 
-void MainWindow::handleSmallSearchReturnPressed()
+void MainWindow::handleSmallTopSearchReturnPressed()
 {
     CentralImage *newImage = new CentralImage(this);
-    newImage->setPixmap(QPixmap(smallSearch->text()));
+    newImage->setPixmap(QPixmap(smallTopSearch->text()));
     newImage->setAlignment(Qt::AlignCenter);
-    newImage->setFixedSize(300, 300);
-    centralLayout->addWidget(newImage, 1, Qt::AlignCenter);
+    newImage->setFixedSize(200, 200);
+    topLayout->addWidget(newImage, 1, Qt::AlignLeft);
 }
 
-void MainWindow::handleSearchButtonSmallClicked()
+void MainWindow::handleSmallBottomSearchReturnPressed()
+{
+    CentralImage *newImage = new CentralImage(this);
+    newImage->setPixmap(QPixmap(smallBottomSearch->text()));
+    newImage->setAlignment(Qt::AlignCenter);
+    newImage->setFixedSize(200, 200);
+    middleLayout->addWidget(newImage, 1, Qt::AlignRight);
+}
+
+void MainWindow::handleSmallTopSearchButtonClicked()
 {
     QString imagePath = QFileDialog::getOpenFileName();
 
     CentralImage *newImage = new CentralImage(this);
     newImage->setPixmap(QPixmap(imagePath));
-    newImage->setAlignment(Qt::AlignCenter);
+    newImage->setAlignment(Qt::AlignLeft);
     newImage->setFixedSize(300, 300);
-    centralLayout->addWidget(newImage, 1, Qt::AlignCenter);
+    topLayout->addWidget(newImage, 1, Qt::AlignLeft);
 }
 
-void MainWindow::handleApplyButtonSmallClicked()
+void MainWindow::handleSmallTopApplyButtonClicked()
 {
     CentralImage *newImage = new CentralImage(this);
-    newImage->setPixmap(QPixmap(smallSearch->text()));
-    newImage->setAlignment(Qt::AlignCenter);
+    newImage->setPixmap(QPixmap(smallTopSearch->text()));
+    newImage->setAlignment(Qt::AlignLeft);
     newImage->setFixedSize(300, 300);
-    centralLayout->addWidget(newImage, 1, Qt::AlignCenter);
+    topLayout->addWidget(newImage, 1, Qt::AlignLeft);
 }
+

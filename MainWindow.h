@@ -27,26 +27,33 @@ class MainWindow : public QMainWindow
         void handleBigSearchReturnPressed();
         void handleSearchButtonBigClicked();
         void handleApplyButtonBigClicked();
-        void handleSmallSearchReturnPressed();
-        void handleSearchButtonSmallClicked();
-        void handleApplyButtonSmallClicked();
+        void handleSmallTopSearchReturnPressed();
+        void handleSmallBottomSearchReturnPressed();
+        void handleSmallTopSearchButtonClicked();
+        void handleSmallTopApplyButtonClicked();
     private:
         QPushButton *resetButton;
         QString bigImagePath;
         QPushButton *searchButtonBig;
         QPushButton *applyButtonBig;
-        QPushButton *searchButtonSmall;
-        QPushButton *applyButtonSmall;
+        QPushButton *smallTopSearchButton;
+        QPushButton *smallTopApplyButton;
+        QPushButton *smallBottomApplyButton;
+        QPushButton *smallBottomSearchButton;
         QSize *initialSize;
         QWidget *interfaceArea;
         QVBoxLayout *mainLayout;
-        QHBoxLayout *bottomLayout;
+        QHBoxLayout *searchBottomLayout;
+        QHBoxLayout *searchTopLayout;
         QLabel *bigImage;
         CentralImage *smallImage;
         QLineEdit *bigSearch;
-        QLineEdit *smallSearch;
+        QLineEdit *smallTopSearch;
+        QLineEdit *smallBottomSearch;
     public:
-        QHBoxLayout *centralLayout;
+        QHBoxLayout *topLayout;
+        QHBoxLayout *middleLayout;
+        QVBoxLayout *bottomLayout;
         MainWindow();
     protected:
         void paintEvent(QPaintEvent *event);

@@ -12,7 +12,7 @@ CentralImage::CentralImage(MainWindow *parent)
 
 void CentralImage::handleCloseButton()
 {
-    father->centralLayout->removeWidget(this);
+    father->topLayout->removeWidget(this);
     delete this;
 }
 
