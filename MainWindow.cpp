@@ -11,19 +11,20 @@ MainWindow::MainWindow()
     setCentralWidget(interfaceArea);
 
     mainLayout = new QVBoxLayout();
-    // mainLayout->addStretch(1);
-    
+
     topLayout = new QHBoxLayout();
     mainLayout->addLayout(topLayout);
     topLayout->setMargin(20);
-    topLayout->setSpacing(-1);
-
+    spacerTopLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    topLayout->addSpacerItem(spacerTopLayout);
+    
     mainLayout->addStretch(1000);
 
     middleLayout = new QHBoxLayout();
     mainLayout->addLayout(middleLayout);
     middleLayout->setMargin(20);
-    middleLayout->setSpacing(0);
+    spacerMiddleLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    middleLayout->addSpacerItem(spacerMiddleLayout);
 
     mainLayout->addStretch(1);
 
@@ -70,11 +71,9 @@ MainWindow::MainWindow()
 
     smallBottomApplyButton = new QPushButton("Apply");
     searchTopLayout->addWidget(smallBottomApplyButton);
-    // connect(smallBottomApplyButton, SIGNAL(clicked()), this, SLOT(handleSmallTopApplyButtonClicked()));
 
     smallBottomSearchButton = new QPushButton("Search");
     searchTopLayout->addWidget(smallBottomSearchButton);
-    // connect(smallBottomSearchButton, SIGNAL(clicked()), this, SLOT(handleSmallTopSearchButtonClicked()));
 
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -118,8 +117,11 @@ void MainWindow::handleResetButtonClicked()
     while (QLayoutItem *item = middleLayout->takeAt(0))
         delete item->widget();
 
-    // QWidget *empty = new QWidget();
-    // imagesTopLayout->addWidget(empty);
+
+    spacerTopLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    topLayout->addSpacerItem(spacerTopLayout);
+    spacerMiddleLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    middleLayout->addSpacerItem(spacerMiddleLayout);
 }
 
 void MainWindow::handleSmallTopSearchReturnPressed()
@@ -127,8 +129,12 @@ void MainWindow::handleSmallTopSearchReturnPressed()
     CentralImage *newImage = new CentralImage(this);
     newImage->setPixmap(QPixmap(smallTopSearch->text()));
     newImage->setAlignment(Qt::AlignCenter);
-    newImage->setFixedSize(200, 200);
+    newImage->setFixedSize(280, 280);
+    newImage->setMargin(20);
     topLayout->addWidget(newImage, 0, Qt::AlignLeft);
+
+    topLayout->removeItem(spacerTopLayout);
+    topLayout->insertItem(1000, spacerTopLayout);
 }
 
 void MainWindow::handleSmallBottomSearchReturnPressed()
@@ -136,7 +142,8 @@ void MainWindow::handleSmallBottomSearchReturnPressed()
     CentralImage *newImage = new CentralImage(this);
     newImage->setPixmap(QPixmap(smallBottomSearch->text()));
     newImage->setAlignment(Qt::AlignCenter);
-    newImage->setFixedSize(200, 200);
+    newImage->setFixedSize(280, 280);
+    newImage->setMargin(20);
     middleLayout->addWidget(newImage, 0, Qt::AlignRight);
 }
 
@@ -149,6 +156,9 @@ void MainWindow::handleSmallTopSearchButtonClicked()
     newImage->setAlignment(Qt::AlignLeft);
     newImage->setFixedSize(300, 300);
     topLayout->addWidget(newImage, 0, Qt::AlignLeft);
+
+    topLayout->removeItem(spacerTopLayout);
+    topLayout->insertItem(1000, spacerTopLayout);
 }
 
 void MainWindow::handleSmallTopApplyButtonClicked()
@@ -158,5 +168,8 @@ void MainWindow::handleSmallTopApplyButtonClicked()
     newImage->setAlignment(Qt::AlignLeft);
     newImage->setFixedSize(300, 300);
     topLayout->addWidget(newImage, 0, Qt::AlignLeft);
+
+    topLayout->removeItem(spacerTopLayout);
+    topLayout->insertItem(1000, spacerTopLayout);
 }
 

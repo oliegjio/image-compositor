@@ -40,6 +40,8 @@ class MainWindow : public QMainWindow
         QPushButton *smallTopApplyButton;
         QPushButton *smallBottomApplyButton;
         QPushButton *smallBottomSearchButton;
+        QSpacerItem *spacerTopLayout;
+        QSpacerItem *spacerMiddleLayout;
         QSize *initialSize;
         QWidget *interfaceArea;
         QVBoxLayout *mainLayout;
