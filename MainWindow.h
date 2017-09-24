@@ -24,34 +24,47 @@ class MainWindow : public QMainWindow
 
     private slots:
         void handleResetButtonClicked();
+
         void handleBigSearchReturnPressed();
-        void handleSearchButtonBigClicked();
-        void handleApplyButtonBigClicked();
-        void handleSmallTopSearchReturnPressed();
+        void handleBigSearchButtonClicked();
+        void handleBigApplyButtonClicked();
+
         void handleSmallBottomSearchReturnPressed();
+
+        void handleSmallTopSearchReturnPressed();
         void handleSmallTopSearchButtonClicked();
         void handleSmallTopApplyButtonClicked();
     private:
-        QPushButton *resetButton;
-        QString bigImagePath;
-        QPushButton *searchButtonBig;
-        QPushButton *applyButtonBig;
-        QPushButton *smallTopSearchButton;
-        QPushButton *smallTopApplyButton;
-        QPushButton *smallBottomApplyButton;
-        QPushButton *smallBottomSearchButton;
-        QSpacerItem *spacerTopLayout;
-        QSpacerItem *spacerMiddleLayout;
         QSize *initialSize;
         QWidget *interfaceArea;
+
         QVBoxLayout *mainLayout;
-        QHBoxLayout *searchBottomLayout;
-        QHBoxLayout *searchTopLayout;
+
+        QPushButton *resetButton;
+        QPushButton *bigSearchButton;
+        QPushButton *bigApplyButton;
+        QString bigImagePath;
         QLabel *bigImage;
-        CentralImage *smallImage;
         QLineEdit *bigSearch;
+
+        QSpacerItem *spacerTopLayout;
+        QSpacerItem *spacerMiddleLayout;
+        void addSpacerItems();
+        
+        QPushButton *smallTopSearchButton;
+        QPushButton *smallTopApplyButton;
         QLineEdit *smallTopSearch;
+        QHBoxLayout *searchTopLayout;
+
+        QPushButton *smallBottomApplyButton;
+        QPushButton *smallBottomSearchButton;
         QLineEdit *smallBottomSearch;
+        QHBoxLayout *searchBottomLayout;
+
+        void imageToTopLayout(QString path);
+        void imageToMiddleLayout(QString path);
+
+        CentralImage *smallImage;
     public:
         QHBoxLayout *topLayout;
         QHBoxLayout *middleLayout;

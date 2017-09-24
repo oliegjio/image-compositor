@@ -35,20 +35,20 @@ QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 24), // "handleResetButtonClicked"
 QT_MOC_LITERAL(2, 36, 0), // ""
 QT_MOC_LITERAL(3, 37, 28), // "handleBigSearchReturnPressed"
-QT_MOC_LITERAL(4, 66, 28), // "handleSearchButtonBigClicked"
-QT_MOC_LITERAL(5, 95, 27), // "handleApplyButtonBigClicked"
-QT_MOC_LITERAL(6, 123, 33), // "handleSmallTopSearchReturnPre..."
-QT_MOC_LITERAL(7, 157, 36), // "handleSmallBottomSearchReturn..."
+QT_MOC_LITERAL(4, 66, 28), // "handleBigSearchButtonClicked"
+QT_MOC_LITERAL(5, 95, 27), // "handleBigApplyButtonClicked"
+QT_MOC_LITERAL(6, 123, 36), // "handleSmallBottomSearchReturn..."
+QT_MOC_LITERAL(7, 160, 33), // "handleSmallTopSearchReturnPre..."
 QT_MOC_LITERAL(8, 194, 33), // "handleSmallTopSearchButtonCli..."
 QT_MOC_LITERAL(9, 228, 32) // "handleSmallTopApplyButtonClicked"
 
     },
     "MainWindow\0handleResetButtonClicked\0"
     "\0handleBigSearchReturnPressed\0"
-    "handleSearchButtonBigClicked\0"
-    "handleApplyButtonBigClicked\0"
-    "handleSmallTopSearchReturnPressed\0"
+    "handleBigSearchButtonClicked\0"
+    "handleBigApplyButtonClicked\0"
     "handleSmallBottomSearchReturnPressed\0"
+    "handleSmallTopSearchReturnPressed\0"
     "handleSmallTopSearchButtonClicked\0"
     "handleSmallTopApplyButtonClicked"
 };
@@ -98,10 +98,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->handleResetButtonClicked(); break;
         case 1: _t->handleBigSearchReturnPressed(); break;
-        case 2: _t->handleSearchButtonBigClicked(); break;
-        case 3: _t->handleApplyButtonBigClicked(); break;
-        case 4: _t->handleSmallTopSearchReturnPressed(); break;
-        case 5: _t->handleSmallBottomSearchReturnPressed(); break;
+        case 2: _t->handleBigSearchButtonClicked(); break;
+        case 3: _t->handleBigApplyButtonClicked(); break;
+        case 4: _t->handleSmallBottomSearchReturnPressed(); break;
+        case 5: _t->handleSmallTopSearchReturnPressed(); break;
         case 6: _t->handleSmallTopSearchButtonClicked(); break;
         case 7: _t->handleSmallTopApplyButtonClicked(); break;
         default: ;
