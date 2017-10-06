@@ -32,25 +32,25 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 24), // "handleResetButtonClicked"
+QT_MOC_LITERAL(1, 11, 24), // "resetButtonClicked"
 QT_MOC_LITERAL(2, 36, 0), // ""
-QT_MOC_LITERAL(3, 37, 28), // "handleBigSearchReturnPressed"
-QT_MOC_LITERAL(4, 66, 28), // "handleBigSearchButtonClicked"
-QT_MOC_LITERAL(5, 95, 27), // "handleBigApplyButtonClicked"
+QT_MOC_LITERAL(3, 37, 28), // "bigSearchReturnPressed"
+QT_MOC_LITERAL(4, 66, 28), // "bigSearchButtonClicked"
+QT_MOC_LITERAL(5, 95, 27), // "bigApplyButtonClicked"
 QT_MOC_LITERAL(6, 123, 36), // "handleSmallBottomSearchReturn..."
 QT_MOC_LITERAL(7, 160, 33), // "handleSmallTopSearchReturnPre..."
 QT_MOC_LITERAL(8, 194, 33), // "handleSmallTopSearchButtonCli..."
-QT_MOC_LITERAL(9, 228, 32) // "handleSmallTopApplyButtonClicked"
+QT_MOC_LITERAL(9, 228, 32) // "topApplyButtonClicked"
 
     },
-    "MainWindow\0handleResetButtonClicked\0"
-    "\0handleBigSearchReturnPressed\0"
-    "handleBigSearchButtonClicked\0"
-    "handleBigApplyButtonClicked\0"
-    "handleSmallBottomSearchReturnPressed\0"
-    "handleSmallTopSearchReturnPressed\0"
-    "handleSmallTopSearchButtonClicked\0"
-    "handleSmallTopApplyButtonClicked"
+    "MainWindow\0resetButtonClicked\0"
+    "\0bigSearchReturnPressed\0"
+    "bigSearchButtonClicked\0"
+    "bigApplyButtonClicked\0"
+    "bottomSearchReturnPressed\0"
+    "topSearchReturnPressed\0"
+    "topSearchButtonClicked\0"
+    "topApplyButtonClicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -96,14 +96,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->handleResetButtonClicked(); break;
-        case 1: _t->handleBigSearchReturnPressed(); break;
-        case 2: _t->handleBigSearchButtonClicked(); break;
-        case 3: _t->handleBigApplyButtonClicked(); break;
-        case 4: _t->handleSmallBottomSearchReturnPressed(); break;
-        case 5: _t->handleSmallTopSearchReturnPressed(); break;
-        case 6: _t->handleSmallTopSearchButtonClicked(); break;
-        case 7: _t->handleSmallTopApplyButtonClicked(); break;
+        case 0: _t->resetButtonClicked(); break;
+        case 1: _t->bigSearchReturnPressed(); break;
+        case 2: _t->bigSearchButtonClicked(); break;
+        case 3: _t->bigApplyButtonClicked(); break;
+        case 4: _t->bottomSearchReturnPressed(); break;
+        case 5: _t->topSearchReturnPressed(); break;
+        case 6: _t->topSearchButtonClicked(); break;
+        case 7: _t->topApplyButtonClicked(); break;
         default: ;
         }
     }

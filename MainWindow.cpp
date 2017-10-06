@@ -37,38 +37,39 @@ MainWindow::MainWindow()
 
     bigSearchButton = new QPushButton("Search");
     bottomSearchLayout->addWidget(bigSearchButton);
-    connect(bigSearchButton, SIGNAL(clicked()), this, SLOT(handleBigSearchButtonClicked()));
+    connect(bigSearchButton, SIGNAL(clicked()), this, SLOT(bigSearchButtonClicked()));
 
     bigApplyButton = new QPushButton("Apply");
     bottomSearchLayout->addWidget(bigApplyButton);
-    connect(bigApplyButton, SIGNAL(clicked()), this, SLOT(handleBigApplyButtonClicked()));
+    connect(bigApplyButton, SIGNAL(clicked()), this, SLOT(bigApplyButtonClicked()));
     
     bigSearch = new QLineEdit();
     bottomSearchLayout->addWidget(bigSearch);
-    connect(bigSearch, SIGNAL(returnPressed()), this, SLOT(handleBigSearchReturnPressed()));
+    connect(bigSearch, SIGNAL(returnPressed()), this, SLOT(bigSearchReturnPressed()));
 
     resetButton = new QPushButton("Reset");
     bottomSearchLayout->addWidget(resetButton);
-    connect(resetButton, SIGNAL(clicked()), this, SLOT(handleResetButtonClicked()));
+    connect(resetButton, SIGNAL(clicked()), this, SLOT(resetButtonClicked()));
 
     topApplyButton = new QPushButton("Apply");
     topSearchLayout->addWidget(topApplyButton);
-    connect(topApplyButton, SIGNAL(clicked()), this, SLOT(handleSmallTopApplyButtonClicked()));
+    connect(topApplyButton, SIGNAL(clicked()), this, SLOT(topApplyButtonClicked()));
 
     topSearchButton = new QPushButton("Search");
     topSearchLayout->addWidget(topSearchButton);
-    connect(topSearchButton, SIGNAL(clicked()), this, SLOT(handleSmallTopSearchButtonClicked()));
+    connect(topSearchButton, SIGNAL(clicked()), this, SLOT(topSearchButtonClicked()));
 
     topSearch = new QLineEdit();
     topSearchLayout->addWidget(topSearch);
-    connect(topSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallTopSearchReturnPressed()));
+    connect(topSearch, SIGNAL(returnPressed()), this, SLOT(topSearchReturnPressed()));
 
     bottomSearch = new QLineEdit();
     topSearchLayout->addWidget(bottomSearch);
-    connect(bottomSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallBottomSearchReturnPressed()));
+    connect(bottomSearch, SIGNAL(returnPressed()), this, SLOT(bottomSearchReturnPressed()));
 
     bottomApplyButton = new QPushButton("Apply");
     topSearchLayout->addWidget(bottomApplyButton);
+    // connect(bottomApplyButton, SIGNAL(clicked()), this, SLOT(bottomApplyButtonClicked()));
 
     bottomSearchButton = new QPushButton("Search");
     topSearchLayout->addWidget(bottomSearchButton);
@@ -86,14 +87,14 @@ void MainWindow::addSpacerItems()
     middleLayout->addSpacerItem(spacerMiddleLayout);
 }
 
-void MainWindow::handleBigSearchButtonClicked()
+void MainWindow::bigSearchButtonClicked()
 {
     bigImagePath = QFileDialog::getOpenFileName();
     bigSearch->setText(bigImagePath);
     repaint();
 }
 
-void MainWindow::handleBigApplyButtonClicked() 
+void MainWindow::bigApplyButtonClicked() 
 {
     bigImagePath = bigSearch->text();
     repaint();
@@ -110,13 +111,13 @@ void MainWindow::paintEvent(QPaintEvent *event)
     painter.drawPixmap(x, y, image);
 }
 
-void MainWindow::handleBigSearchReturnPressed()
+void MainWindow::bigSearchReturnPressed()
 {
     bigImagePath = bigSearch->text();
     repaint();
 }
 
-void MainWindow::handleResetButtonClicked()
+void MainWindow::resetButtonClicked()
 {
     while (QLayoutItem *item = topLayout->takeAt(0))
         delete item->widget();
@@ -149,23 +150,23 @@ void MainWindow::imageToTopLayout(QString path)
     topLayout->insertItem(1000, spacerTopLayout);
 }
 
-void MainWindow::handleSmallTopSearchReturnPressed()
+void MainWindow::topSearchReturnPressed()
 {
     imageToTopLayout(topSearch->text());
 }
 
-void MainWindow::handleSmallTopApplyButtonClicked()
+void MainWindow::topApplyButtonClicked()
 {
     imageToTopLayout(topSearch->text());
 }
 
-void MainWindow::handleSmallTopSearchButtonClicked()
+void MainWindow::topSearchButtonClicked()
 {
     QString imagePath = QFileDialog::getOpenFileName();
     imageToTopLayout(imagePath);
 }
 
-void MainWindow::handleSmallBottomSearchReturnPressed()
+void MainWindow::bottomSearchReturnPressed()
 {
     imageToMiddleLayout(bottomSearch->text());
 }

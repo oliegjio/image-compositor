@@ -23,17 +23,18 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     private slots:
-        void handleResetButtonClicked();
+        void resetButtonClicked();
 
-        void handleBigSearchReturnPressed();
-        void handleBigSearchButtonClicked();
-        void handleBigApplyButtonClicked();
+        void bigSearchReturnPressed();
+        void bigSearchButtonClicked();
+        void bigApplyButtonClicked();
 
-        void handleSmallBottomSearchReturnPressed();
+        void bottomSearchReturnPressed();
 
-        void handleSmallTopSearchReturnPressed();
-        void handleSmallTopSearchButtonClicked();
-        void handleSmallTopApplyButtonClicked();
+        void topSearchReturnPressed();
+        void topSearchButtonClicked();
+        void topApplyButtonClicked();
+        
     private:
         QSize *initialSize;
         QWidget *interfaceArea;
@@ -65,11 +66,13 @@ class MainWindow : public QMainWindow
         void imageToMiddleLayout(QString path);
 
         CentralImage *smallImage;
+        
     public:
         QHBoxLayout *topLayout;
         QHBoxLayout *middleLayout;
         QVBoxLayout *bottomLayout;
         MainWindow();
+        
     protected:
         void paintEvent(QPaintEvent *event);
 };
