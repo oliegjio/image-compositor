@@ -51,10 +51,10 @@ class MainWindow : public QMainWindow
         QSpacerItem *spacerMiddleLayout;
         void addSpacerItems();
         
-        QPushButton *smallTopSearchButton;
-        QPushButton *smallTopApplyButton;
-        QLineEdit *smallTopSearch;
-        QHBoxLayout *searchTopLayout;
+        QPushButton *topSearchButton;
+        QPushButton *topApplyButton;
+        QLineEdit *topSearch;
+        QHBoxLayout *topSearchLayout;
 
         QPushButton *smallBottomApplyButton;
         QPushButton *smallBottomSearchButton;
