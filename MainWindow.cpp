@@ -69,10 +69,11 @@ MainWindow::MainWindow()
 
     bottomApplyButton = new QPushButton("Apply");
     topSearchLayout->addWidget(bottomApplyButton);
-    // connect(bottomApplyButton, SIGNAL(clicked()), this, SLOT(bottomApplyButtonClicked()));
+    connect(bottomApplyButton, SIGNAL(clicked()), this, SLOT(bottomApplyButtonClicked()));
 
     bottomSearchButton = new QPushButton("Search");
     topSearchLayout->addWidget(bottomSearchButton);
+    connect(bottomSearchButton, SIGNAL(clicked()), this, SLOT(bottomSearchButtonClicked()));
 
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -130,7 +131,7 @@ void MainWindow::resetButtonClicked()
 void MainWindow::imageToMiddleLayout(QString path)
 {
     CentralImage *newImage = new CentralImage(this);
-    newImage->setPixmap(QPixmap(bottomSearch->text()));
+    newImage->setPixmap(QPixmap(path));
     newImage->setAlignment(Qt::AlignCenter);
     newImage->setFixedSize(280, 280);
     newImage->setMargin(20);
@@ -171,5 +172,13 @@ void MainWindow::bottomSearchReturnPressed()
     imageToMiddleLayout(bottomSearch->text());
 }
 
+void MainWindow::bottomApplyButtonClicked()
+{
+    imageToMiddleLayout(bottomSearch->text());
+}
 
-
+void MainWindow::bottomSearchButtonClicked()
+{
+    QString imagePath = QFileDialog::getOpenFileName();
+    imageToMiddleLayout(imagePath);
+}

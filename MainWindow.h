@@ -30,6 +30,8 @@ class MainWindow : public QMainWindow
         void bigApplyButtonClicked();
 
         void bottomSearchReturnPressed();
+        void bottomApplyButtonClicked();
+        void bottomSearchButtonClicked();
 
         void topSearchReturnPressed();
         void topSearchButtonClicked();
