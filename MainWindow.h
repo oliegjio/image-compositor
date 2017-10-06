@@ -51,7 +51,7 @@ class MainWindow : public QMainWindow
         QLineEdit *bigSearch;
 
         QSpacerItem *spacerTopLayout;
-        QSpacerItem *spacerMiddleLayout;
+        QSpacerItem *spacerBottomLayout;
         void addSpacerItems();
         
         QPushButton *topSearchButton;

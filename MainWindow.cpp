@@ -84,8 +84,8 @@ void MainWindow::addSpacerItems()
 {
     spacerTopLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
     topLayout->addSpacerItem(spacerTopLayout);
-    spacerMiddleLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    middleLayout->addSpacerItem(spacerMiddleLayout);
+    spacerBottomLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    middleLayout->addSpacerItem(spacerBottomLayout);
 }
 
 void MainWindow::bigSearchButtonClicked()
