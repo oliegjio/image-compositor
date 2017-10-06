@@ -32,23 +32,23 @@ MainWindow::MainWindow()
     topSearchLayout = new QHBoxLayout();
     bottomLayout->addLayout(topSearchLayout);
 
-    searchBottomLayout = new QHBoxLayout();
-    bottomLayout->addLayout(searchBottomLayout);
+    bottomSearchLayout = new QHBoxLayout();
+    bottomLayout->addLayout(bottomSearchLayout);
 
     bigSearchButton = new QPushButton("Search");
-    searchBottomLayout->addWidget(bigSearchButton);
+    bottomSearchLayout->addWidget(bigSearchButton);
     connect(bigSearchButton, SIGNAL(clicked()), this, SLOT(handleBigSearchButtonClicked()));
 
     bigApplyButton = new QPushButton("Apply");
-    searchBottomLayout->addWidget(bigApplyButton);
+    bottomSearchLayout->addWidget(bigApplyButton);
     connect(bigApplyButton, SIGNAL(clicked()), this, SLOT(handleBigApplyButtonClicked()));
     
     bigSearch = new QLineEdit();
-    searchBottomLayout->addWidget(bigSearch);
+    bottomSearchLayout->addWidget(bigSearch);
     connect(bigSearch, SIGNAL(returnPressed()), this, SLOT(handleBigSearchReturnPressed()));
 
     resetButton = new QPushButton("Reset");
-    searchBottomLayout->addWidget(resetButton);
+    bottomSearchLayout->addWidget(resetButton);
     connect(resetButton, SIGNAL(clicked()), this, SLOT(handleResetButtonClicked()));
 
     topApplyButton = new QPushButton("Apply");
@@ -63,15 +63,15 @@ MainWindow::MainWindow()
     topSearchLayout->addWidget(topSearch);
     connect(topSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallTopSearchReturnPressed()));
 
-    smallBottomSearch = new QLineEdit();
-    topSearchLayout->addWidget(smallBottomSearch);
-    connect(smallBottomSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallBottomSearchReturnPressed()));
+    bottomSearch = new QLineEdit();
+    topSearchLayout->addWidget(bottomSearch);
+    connect(bottomSearch, SIGNAL(returnPressed()), this, SLOT(handleSmallBottomSearchReturnPressed()));
 
-    smallBottomApplyButton = new QPushButton("Apply");
-    topSearchLayout->addWidget(smallBottomApplyButton);
+    bottomApplyButton = new QPushButton("Apply");
+    topSearchLayout->addWidget(bottomApplyButton);
 
-    smallBottomSearchButton = new QPushButton("Search");
-    topSearchLayout->addWidget(smallBottomSearchButton);
+    bottomSearchButton = new QPushButton("Search");
+    topSearchLayout->addWidget(bottomSearchButton);
 
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -129,7 +129,7 @@ void MainWindow::handleResetButtonClicked()
 void MainWindow::imageToMiddleLayout(QString path)
 {
     CentralImage *newImage = new CentralImage(this);
-    newImage->setPixmap(QPixmap(smallBottomSearch->text()));
+    newImage->setPixmap(QPixmap(bottomSearch->text()));
     newImage->setAlignment(Qt::AlignCenter);
     newImage->setFixedSize(280, 280);
     newImage->setMargin(20);
@@ -167,7 +167,7 @@ void MainWindow::handleSmallTopSearchButtonClicked()
 
 void MainWindow::handleSmallBottomSearchReturnPressed()
 {
-    imageToMiddleLayout(smallBottomSearch->text());
+    imageToMiddleLayout(bottomSearch->text());
 }
 
 

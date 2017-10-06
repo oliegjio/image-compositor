@@ -56,10 +56,10 @@ class MainWindow : public QMainWindow
         QLineEdit *topSearch;
         QHBoxLayout *topSearchLayout;
 
-        QPushButton *smallBottomApplyButton;
-        QPushButton *smallBottomSearchButton;
-        QLineEdit *smallBottomSearch;
-        QHBoxLayout *searchBottomLayout;
+        QPushButton *bottomApplyButton;
+        QPushButton *bottomSearchButton;
+        QLineEdit *bottomSearch;
+        QHBoxLayout *bottomSearchLayout;
 
         void imageToTopLayout(QString path);
         void imageToMiddleLayout(QString path);
