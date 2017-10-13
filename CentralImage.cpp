@@ -6,7 +6,7 @@ CentralImage::CentralImage(MainWindow *parent)
 
     QPushButton *closeButton = new QPushButton("X", this);
     closeButton->setFixedWidth(25);
-    closeButton->move(5, 5);
+    closeButton->move(0, 0);
     connect(closeButton, SIGNAL(clicked()), this, SLOT(handleCloseButton()));
 }
 

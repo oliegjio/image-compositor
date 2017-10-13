@@ -14,13 +14,11 @@ MainWindow::MainWindow()
 
     topLayout = new QHBoxLayout();
     mainLayout->addLayout(topLayout);
-    topLayout->setMargin(20);
     
     mainLayout->addStretch(1000);
 
     middleLayout = new QHBoxLayout();
     mainLayout->addLayout(middleLayout);
-    middleLayout->setMargin(20);
 
     addSpacerItems();
 
@@ -134,7 +132,6 @@ void MainWindow::imageToMiddleLayout(QString path)
     newImage->setPixmap(QPixmap(path));
     newImage->setAlignment(Qt::AlignCenter);
     newImage->setFixedSize(280, 280);
-    newImage->setMargin(20);
     middleLayout->addWidget(newImage, 0, Qt::AlignRight);
 }
 
@@ -144,7 +141,6 @@ void MainWindow::imageToTopLayout(QString path)
     newImage->setPixmap(QPixmap(path));
     newImage->setAlignment(Qt::AlignCenter);
     newImage->setFixedSize(280, 280);
-    newImage->setMargin(20);
     topLayout->addWidget(newImage, 0, Qt::AlignLeft);
 
     topLayout->removeItem(spacerTopLayout);
