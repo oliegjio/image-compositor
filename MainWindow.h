@@ -15,6 +15,8 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QVBoxLayout>
+#include <QDebug>
+#include <QDirIterator>
 
 class CentralImage;
 
@@ -33,13 +35,14 @@ class MainWindow : public QMainWindow
         void bottomApplyButtonClicked();
         void bottomSearchButtonClicked();
 
-        void topSearchReturnPressed();
         void topSearchButtonClicked();
-        void topApplyButtonClicked();
+        void topHandleButtonAndSearch();
         
     private:
         QSize *initialSize;
         QWidget *interfaceArea;
+
+        QRegExp extensions;
 
         QVBoxLayout *mainLayout;
 
@@ -58,14 +61,16 @@ class MainWindow : public QMainWindow
         QPushButton *topApplyButton;
         QLineEdit *topSearch;
         QHBoxLayout *topSearchLayout;
+        QDir topCurrentDirectory;
 
         QPushButton *bottomApplyButton;
         QPushButton *bottomSearchButton;
         QLineEdit *bottomSearch;
         QHBoxLayout *bottomSearchLayout;
 
-        void imageToTopLayout(QString path);
-        void imageToMiddleLayout(QString path);
+        CentralImage* newImage(QString path);
+        QString searchImage(QString name, QDir directory);
+        void imageToLayout(QString path, QHBoxLayout* layout);
 
         CentralImage *smallImage;
         

@@ -2,6 +2,9 @@
 
 MainWindow::MainWindow() 
 {
+    extensions = QRegExp("^.*\.(jpg|png)$");
+    extensions.setCaseSensitivity(Qt::CaseInsensitive);
+
     bigImagePath = QString("./image.jpg");
 
     initialSize = new QSize(1200, 700);
@@ -51,7 +54,7 @@ MainWindow::MainWindow()
 
     topApplyButton = new QPushButton("Apply");
     topSearchLayout->addWidget(topApplyButton);
-    connect(topApplyButton, SIGNAL(clicked()), this, SLOT(topApplyButtonClicked()));
+    connect(topApplyButton, SIGNAL(clicked()), this, SLOT(topHandleButtonAndSearch()));
 
     topSearchButton = new QPushButton("Search");
     topSearchLayout->addWidget(topSearchButton);
@@ -59,7 +62,7 @@ MainWindow::MainWindow()
 
     topSearch = new QLineEdit();
     topSearchLayout->addWidget(topSearch);
-    connect(topSearch, SIGNAL(returnPressed()), this, SLOT(topSearchReturnPressed()));
+    connect(topSearch, SIGNAL(returnPressed()), this, SLOT(topHandleButtonAndSearch()));
 
     bottomSearch = new QLineEdit();
     topSearchLayout->addWidget(bottomSearch);
@@ -126,55 +129,74 @@ void MainWindow::resetButtonClicked()
     addSpacerItems();
 }
 
+CentralImage* MainWindow::newImage(QString path)
+{
+    CentralImage* image = new CentralImage(this);
+    image->setPixmap(QPixmap(path));
+    image->setAlignment(Qt::AlignCenter);
+    image->setFixedSize(280, 280);
+    return image;
+}
+
 void MainWindow::imageToMiddleLayout(QString path)
 {
-    CentralImage *newImage = new CentralImage(this);
-    newImage->setPixmap(QPixmap(path));
-    newImage->setAlignment(Qt::AlignCenter);
-    newImage->setFixedSize(280, 280);
-    middleLayout->addWidget(newImage, 0, Qt::AlignRight);
+    if (path.isEmpty()) return;
+
+    CentralImage* image = newImage(path);
+    middleLayout->addWidget(image, 0, Qt::AlignRight);
 }
 
-void MainWindow::imageToTopLayout(QString path)
+void MainWindow::imageToLayout(QString path, QHBoxLayout* layout)
 {
-    CentralImage *newImage = new CentralImage(this);
-    newImage->setPixmap(QPixmap(path));
-    newImage->setAlignment(Qt::AlignCenter);
-    newImage->setFixedSize(280, 280);
-    topLayout->addWidget(newImage, 0, Qt::AlignLeft);
+    if (path.isEmpty()) return;
 
-    topLayout->removeItem(spacerTopLayout);
-    topLayout->insertItem(1000, spacerTopLayout);
+    CentralImage* image = newImage(path);
+
+    layout->addWidget(image, 0, Qt::AlignLeft);
+
+    layout->removeItem(spacerTopLayout);
+    layout->insertItem(1000, spacerTopLayout);
 }
 
-void MainWindow::topSearchReturnPressed()
+QString MainWindow::searchImage(QDir directory, QString name)
 {
-    imageToTopLayout(topSearch->text());
+    QStringList files = directory.entryList();
+
+    QList<QString>::Iterator i;
+    for (i = files.begin(); i != files.end(); ++i)
+    {
+        if (extensions.exactMatch(*i) && (*i).left((*i).length() - 4) == name)
+        {
+            return directory.absoluteFilePath(*i);
+        }
+    }
+
+    return QString("");
 }
 
-void MainWindow::topApplyButtonClicked()
+void MainWindow::topHandleButtonAndSearch()
 {
-    imageToTopLayout(topSearch->text());
+    QString path = searchImage(topCurrentDirectory, topSearch->text());
+    if (path != "") imageToLayout(path, topLayout);
 }
 
 void MainWindow::topSearchButtonClicked()
 {
-    QString imagePath = QFileDialog::getOpenFileName();
-    imageToTopLayout(imagePath);
+    topCurrentDirectory = QDir(QFileDialog::getExistingDirectory());
 }
 
 void MainWindow::bottomSearchReturnPressed()
 {
-    imageToMiddleLayout(bottomSearch->text());
+    imageToLayout(bottomSearch->text(), middleLayout);
 }
 
 void MainWindow::bottomApplyButtonClicked()
 {
-    imageToMiddleLayout(bottomSearch->text());
+    imageToLayout(bottomSearch->text(), middleLayout);
 }
 
 void MainWindow::bottomSearchButtonClicked()
 {
     QString imagePath = QFileDialog::getOpenFileName();
-    imageToMiddleLayout(imagePath);
+    imageToLayout(imagePath, middleLayout);
 }

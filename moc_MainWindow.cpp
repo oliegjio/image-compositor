@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MainWindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'MainWindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.9.1. It"
+#error "This file was generated using the moc from 5.9.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[12];
-    char stringdata0[244];
+    QByteArrayData data[11];
+    char stringdata0[224];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,9 +40,8 @@ QT_MOC_LITERAL(5, 77, 21), // "bigApplyButtonClicked"
 QT_MOC_LITERAL(6, 99, 25), // "bottomSearchReturnPressed"
 QT_MOC_LITERAL(7, 125, 24), // "bottomApplyButtonClicked"
 QT_MOC_LITERAL(8, 150, 25), // "bottomSearchButtonClicked"
-QT_MOC_LITERAL(9, 176, 22), // "topSearchReturnPressed"
-QT_MOC_LITERAL(10, 199, 22), // "topSearchButtonClicked"
-QT_MOC_LITERAL(11, 222, 21) // "topApplyButtonClicked"
+QT_MOC_LITERAL(9, 176, 22), // "topSearchButtonClicked"
+QT_MOC_LITERAL(10, 199, 24) // "topHandleButtonAndSearch"
 
     },
     "MainWindow\0resetButtonClicked\0\0"
@@ -50,8 +49,7 @@ QT_MOC_LITERAL(11, 222, 21) // "topApplyButtonClicked"
     "bigApplyButtonClicked\0bottomSearchReturnPressed\0"
     "bottomApplyButtonClicked\0"
     "bottomSearchButtonClicked\0"
-    "topSearchReturnPressed\0topSearchButtonClicked\0"
-    "topApplyButtonClicked"
+    "topSearchButtonClicked\0topHandleButtonAndSearch"
 };
 #undef QT_MOC_LITERAL
 
@@ -61,7 +59,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -69,19 +67,17 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   64,    2, 0x08 /* Private */,
-       3,    0,   65,    2, 0x08 /* Private */,
-       4,    0,   66,    2, 0x08 /* Private */,
-       5,    0,   67,    2, 0x08 /* Private */,
-       6,    0,   68,    2, 0x08 /* Private */,
-       7,    0,   69,    2, 0x08 /* Private */,
-       8,    0,   70,    2, 0x08 /* Private */,
-       9,    0,   71,    2, 0x08 /* Private */,
-      10,    0,   72,    2, 0x08 /* Private */,
-      11,    0,   73,    2, 0x08 /* Private */,
+       1,    0,   59,    2, 0x08 /* Private */,
+       3,    0,   60,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    0,   63,    2, 0x08 /* Private */,
+       7,    0,   64,    2, 0x08 /* Private */,
+       8,    0,   65,    2, 0x08 /* Private */,
+       9,    0,   66,    2, 0x08 /* Private */,
+      10,    0,   67,    2, 0x08 /* Private */,
 
  // slots: parameters
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -108,9 +104,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->bottomSearchReturnPressed(); break;
         case 5: _t->bottomApplyButtonClicked(); break;
         case 6: _t->bottomSearchButtonClicked(); break;
-        case 7: _t->topSearchReturnPressed(); break;
-        case 8: _t->topSearchButtonClicked(); break;
-        case 9: _t->topApplyButtonClicked(); break;
+        case 7: _t->topSearchButtonClicked(); break;
+        case 8: _t->topHandleButtonAndSearch(); break;
         default: ;
         }
     }
@@ -132,7 +127,7 @@ void *MainWindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata0))
-        return static_cast<void*>(const_cast< MainWindow*>(this));
+        return static_cast<void*>(this);
     return QMainWindow::qt_metacast(_clname);
 }
 
@@ -142,13 +137,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
+        _id -= 9;
     }
     return _id;
 }
