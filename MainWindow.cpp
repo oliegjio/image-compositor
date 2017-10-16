@@ -138,6 +138,7 @@ CentralImage* MainWindow::newImage(QString path)
     image->setPixmap(QPixmap(path));
     image->setAlignment(Qt::AlignCenter);
     image->setFixedSize(280, 280);
+    image->setScaledContents(true);
     return image;
 }
 
