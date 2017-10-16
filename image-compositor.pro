@@ -4,7 +4,7 @@
 
 QT += widgets core
 TEMPLATE = app
-TARGET = image-finder
+TARGET = image-compositor
 INCLUDEPATH += .
 
 # The following define makes your compiler warn you if you use any
