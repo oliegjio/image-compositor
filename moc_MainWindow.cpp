@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[11];
-    char stringdata0[224];
+    char stringdata0[236];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,19 +34,21 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 18), // "resetButtonClicked"
 QT_MOC_LITERAL(2, 30, 0), // ""
-QT_MOC_LITERAL(3, 31, 22), // "bigSearchReturnPressed"
-QT_MOC_LITERAL(4, 54, 22), // "bigSearchButtonClicked"
-QT_MOC_LITERAL(5, 77, 21), // "bigApplyButtonClicked"
-QT_MOC_LITERAL(6, 99, 25), // "bottomSearchReturnPressed"
-QT_MOC_LITERAL(7, 125, 24), // "bottomApplyButtonClicked"
-QT_MOC_LITERAL(8, 150, 25), // "bottomSearchButtonClicked"
-QT_MOC_LITERAL(9, 176, 22), // "topSearchButtonClicked"
-QT_MOC_LITERAL(10, 199, 24) // "topHandleButtonAndSearch"
+QT_MOC_LITERAL(3, 31, 26), // "centralSearchReturnPressed"
+QT_MOC_LITERAL(4, 58, 26), // "centralSearchButtonClicked"
+QT_MOC_LITERAL(5, 85, 25), // "centralApplyButtonClicked"
+QT_MOC_LITERAL(6, 111, 25), // "bottomSearchReturnPressed"
+QT_MOC_LITERAL(7, 137, 24), // "bottomApplyButtonClicked"
+QT_MOC_LITERAL(8, 162, 25), // "bottomSearchButtonClicked"
+QT_MOC_LITERAL(9, 188, 22), // "topSearchButtonClicked"
+QT_MOC_LITERAL(10, 211, 24) // "topHandleButtonAndSearch"
 
     },
     "MainWindow\0resetButtonClicked\0\0"
-    "bigSearchReturnPressed\0bigSearchButtonClicked\0"
-    "bigApplyButtonClicked\0bottomSearchReturnPressed\0"
+    "centralSearchReturnPressed\0"
+    "centralSearchButtonClicked\0"
+    "centralApplyButtonClicked\0"
+    "bottomSearchReturnPressed\0"
     "bottomApplyButtonClicked\0"
     "bottomSearchButtonClicked\0"
     "topSearchButtonClicked\0topHandleButtonAndSearch"
@@ -98,9 +100,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->resetButtonClicked(); break;
-        case 1: _t->bigSearchReturnPressed(); break;
-        case 2: _t->bigSearchButtonClicked(); break;
-        case 3: _t->bigApplyButtonClicked(); break;
+        case 1: _t->centralSearchReturnPressed(); break;
+        case 2: _t->centralSearchButtonClicked(); break;
+        case 3: _t->centralApplyButtonClicked(); break;
         case 4: _t->bottomSearchReturnPressed(); break;
         case 5: _t->bottomApplyButtonClicked(); break;
         case 6: _t->bottomSearchButtonClicked(); break;

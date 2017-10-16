@@ -27,9 +27,9 @@ class MainWindow : public QMainWindow
     private slots:
         void resetButtonClicked();
 
-        void bigSearchReturnPressed();
-        void bigSearchButtonClicked();
-        void bigApplyButtonClicked();
+        void centralSearchReturnPressed();
+        void centralSearchButtonClicked();
+        void centralApplyButtonClicked();
 
         void bottomSearchReturnPressed();
         void bottomApplyButtonClicked();
@@ -47,38 +47,39 @@ class MainWindow : public QMainWindow
         QVBoxLayout *mainLayout;
 
         QPushButton *resetButton;
-        QPushButton *bigSearchButton;
-        QPushButton *bigApplyButton;
+        QPushButton *centralSearchButton;
+        QPushButton *centralApplyButton;
         QString bigImagePath;
         QLabel *bigImage;
-        QLineEdit *bigSearch;
+        QLineEdit *centralSearch;
 
-        QSpacerItem *spacerTopLayout;
-        QSpacerItem *spacerBottomLayout;
+        QSpacerItem *spacertopImagesLayout;
+        QSpacerItem *spacercontrolsWrapperLayout;
         void addSpacerItems();
         
         QPushButton *topSearchButton;
         QPushButton *topApplyButton;
         QLineEdit *topSearch;
-        QHBoxLayout *topSearchLayout;
+        QHBoxLayout *topControlsLayout;
         QDir topCurrentDirectory;
 
         QPushButton *bottomApplyButton;
         QPushButton *bottomSearchButton;
         QLineEdit *bottomSearch;
-        QHBoxLayout *bottomSearchLayout;
+        QHBoxLayout *bottomControlsLayout;
+        QDir bottomCurrentDirectory;
 
         CentralImage* newImage(QString path);
         QString searchImage(QDir directory, QString name);
-        void imageToMiddleLayout(QString path);
-        void imageToTopLayout(QString path);
+        void imageTobottomImagesLayout(QString path);
+        void imageTotopImagesLayout(QString path);
 
         CentralImage *smallImage;
         
     public:
-        QHBoxLayout *topLayout;
-        QHBoxLayout *middleLayout;
-        QVBoxLayout *bottomLayout;
+        QHBoxLayout *topImagesLayout;
+        QHBoxLayout *bottomImagesLayout;
+        QVBoxLayout *controlsWrapperLayout;
         MainWindow();
         
     protected:

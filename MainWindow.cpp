@@ -2,6 +2,10 @@
 
 MainWindow::MainWindow() 
 {
+    // #####
+    // ## Initialize Values:
+    // #####
+
     extensions = QRegExp("^.*\.(jpg|png)$");
     extensions.setCaseSensitivity(Qt::CaseInsensitive);
 
@@ -13,94 +17,93 @@ MainWindow::MainWindow()
     interfaceArea = new QWidget(); 
     setCentralWidget(interfaceArea);
 
+    // #####
+    // ## Setup Layouts:
+    // #####
+
     mainLayout = new QVBoxLayout();
 
-    topLayout = new QHBoxLayout();
-    mainLayout->addLayout(topLayout);
+    topImagesLayout = new QHBoxLayout();
+    mainLayout->addLayout(topImagesLayout);
     
     mainLayout->addStretch(1000);
 
-    middleLayout = new QHBoxLayout();
-    mainLayout->addLayout(middleLayout);
+    bottomImagesLayout = new QHBoxLayout();
+    mainLayout->addLayout(bottomImagesLayout);
 
     addSpacerItems();
 
     mainLayout->addStretch(1);
 
-    bottomLayout = new QVBoxLayout();
-    mainLayout->addLayout(bottomLayout);
+    controlsWrapperLayout = new QVBoxLayout();
+    mainLayout->addLayout(controlsWrapperLayout);
     
-    topSearchLayout = new QHBoxLayout();
-    bottomLayout->addLayout(topSearchLayout);
+    topControlsLayout = new QHBoxLayout();
+    controlsWrapperLayout->addLayout(topControlsLayout);
 
-    bottomSearchLayout = new QHBoxLayout();
-    bottomLayout->addLayout(bottomSearchLayout);
+    bottomControlsLayout = new QHBoxLayout();
+    controlsWrapperLayout->addLayout(bottomControlsLayout);
 
-    bigSearchButton = new QPushButton("Search");
-    bottomSearchLayout->addWidget(bigSearchButton);
-    connect(bigSearchButton, SIGNAL(clicked()), this, SLOT(bigSearchButtonClicked()));
+    // #####
+    // ## Bottom Layout:
+    // #####
 
-    bigApplyButton = new QPushButton("Apply");
-    bottomSearchLayout->addWidget(bigApplyButton);
-    connect(bigApplyButton, SIGNAL(clicked()), this, SLOT(bigApplyButtonClicked()));
+    centralSearchButton = new QPushButton("Search");
+    bottomControlsLayout->addWidget(centralSearchButton);
+    connect(centralSearchButton, SIGNAL(clicked()), this, SLOT(centralSearchButtonClicked()));
+
+    centralApplyButton = new QPushButton("Apply");
+    bottomControlsLayout->addWidget(centralApplyButton);
+    connect(centralApplyButton, SIGNAL(clicked()), this, SLOT(centralApplyButtonClicked()));
     
-    bigSearch = new QLineEdit();
-    bottomSearchLayout->addWidget(bigSearch);
-    connect(bigSearch, SIGNAL(returnPressed()), this, SLOT(bigSearchReturnPressed()));
+    centralSearch = new QLineEdit();
+    bottomControlsLayout->addWidget(centralSearch);
+    connect(centralSearch, SIGNAL(returnPressed()), this, SLOT(centralSearchReturnPressed()));
 
     resetButton = new QPushButton("Reset");
-    bottomSearchLayout->addWidget(resetButton);
+    bottomControlsLayout->addWidget(resetButton);
     connect(resetButton, SIGNAL(clicked()), this, SLOT(resetButtonClicked()));
 
+    // #####
+    // ## Top Search Layout:
+    // #####
+
     topApplyButton = new QPushButton("Apply");
-    topSearchLayout->addWidget(topApplyButton);
+    topControlsLayout->addWidget(topApplyButton);
     connect(topApplyButton, SIGNAL(clicked()), this, SLOT(topHandleButtonAndSearch()));
 
     topSearchButton = new QPushButton("Search");
-    topSearchLayout->addWidget(topSearchButton);
+    topControlsLayout->addWidget(topSearchButton);
     connect(topSearchButton, SIGNAL(clicked()), this, SLOT(topSearchButtonClicked()));
 
     topSearch = new QLineEdit();
-    topSearchLayout->addWidget(topSearch);
+    topControlsLayout->addWidget(topSearch);
     connect(topSearch, SIGNAL(returnPressed()), this, SLOT(topHandleButtonAndSearch()));
 
+    // #####
+    // ## Bottom Search Layout:
+    // #####
+
     bottomSearch = new QLineEdit();
-    topSearchLayout->addWidget(bottomSearch);
+    topControlsLayout->addWidget(bottomSearch);
     connect(bottomSearch, SIGNAL(returnPressed()), this, SLOT(bottomSearchReturnPressed()));
 
     bottomApplyButton = new QPushButton("Apply");
-    topSearchLayout->addWidget(bottomApplyButton);
+    topControlsLayout->addWidget(bottomApplyButton);
     connect(bottomApplyButton, SIGNAL(clicked()), this, SLOT(bottomApplyButtonClicked()));
 
     bottomSearchButton = new QPushButton("Search");
-    topSearchLayout->addWidget(bottomSearchButton);
+    topControlsLayout->addWidget(bottomSearchButton);
     connect(bottomSearchButton, SIGNAL(clicked()), this, SLOT(bottomSearchButtonClicked()));
+
+    // #####
+    // ## Other:
+    // #####
 
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(0, 0, 0, 0);
     interfaceArea->setLayout(mainLayout);
 };
-
-void MainWindow::addSpacerItems()
-{
-    spacerTopLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    topLayout->addSpacerItem(spacerTopLayout);
-    spacerBottomLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    middleLayout->addSpacerItem(spacerBottomLayout);
-}
-
-void MainWindow::bigSearchButtonClicked()
-{
-    bigImagePath = QFileDialog::getOpenFileName();
-    bigSearch->setText(bigImagePath);
-    repaint();
-}
-
-void MainWindow::bigApplyButtonClicked() 
-{
-    bigImagePath = bigSearch->text();
-    repaint();
-}
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
@@ -113,20 +116,16 @@ void MainWindow::paintEvent(QPaintEvent *event)
     painter.drawPixmap(x, y, image);
 }
 
-void MainWindow::bigSearchReturnPressed()
-{
-    bigImagePath = bigSearch->text();
-    repaint();
-}
+// ========================================
+// Other:
+// ========================================
 
-void MainWindow::resetButtonClicked()
+void MainWindow::addSpacerItems()
 {
-    while (QLayoutItem *item = topLayout->takeAt(0))
-        delete item->widget();
-    while (QLayoutItem *item = middleLayout->takeAt(0))
-        delete item->widget();
-
-    addSpacerItems();
+    spacertopImagesLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    topImagesLayout->addSpacerItem(spacertopImagesLayout);
+    spacercontrolsWrapperLayout = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    bottomImagesLayout->addSpacerItem(spacercontrolsWrapperLayout);
 }
 
 CentralImage* MainWindow::newImage(QString path)
@@ -136,26 +135,6 @@ CentralImage* MainWindow::newImage(QString path)
     image->setAlignment(Qt::AlignCenter);
     image->setFixedSize(280, 280);
     return image;
-}
-
-void MainWindow::imageToMiddleLayout(QString path)
-{
-    if (path.isEmpty()) return;
-
-    CentralImage* image = newImage(path);
-    middleLayout->addWidget(image, 0, Qt::AlignRight);
-}
-
-void MainWindow::imageToTopLayout(QString path)
-{
-    if (path.isEmpty()) return;
-
-    CentralImage* image = newImage(path);
-
-    topLayout->addWidget(image, 0, Qt::AlignLeft);
-
-    topLayout->removeItem(spacerTopLayout);
-    topLayout->insertItem(1000, spacerTopLayout);
 }
 
 QString MainWindow::searchImage(QDir directory, QString name)
@@ -174,10 +153,14 @@ QString MainWindow::searchImage(QDir directory, QString name)
     return QString("");
 }
 
+// ========================================
+// Top Search Layout:
+// ========================================
+
 void MainWindow::topHandleButtonAndSearch()
 {
     QString path = searchImage(topCurrentDirectory, topSearch->text());
-    if (path != "") imageToTopLayout(path);
+    if (path != "") imageTotopImagesLayout(path);
 }
 
 void MainWindow::topSearchButtonClicked()
@@ -185,18 +168,76 @@ void MainWindow::topSearchButtonClicked()
     topCurrentDirectory = QDir(QFileDialog::getExistingDirectory());
 }
 
+void MainWindow::imageTotopImagesLayout(QString path)
+{
+    if (path.isEmpty()) return;
+
+    CentralImage* image = newImage(path);
+
+    topImagesLayout->addWidget(image, 0, Qt::AlignLeft);
+
+    topImagesLayout->removeItem(spacertopImagesLayout);
+    topImagesLayout->insertItem(1000, spacertopImagesLayout);
+}
+
+// ========================================
+// Middle Search Layout:
+// ========================================
+
+void MainWindow::imageTobottomImagesLayout(QString path)
+{
+    if (path.isEmpty()) return;
+
+    CentralImage* image = newImage(path);
+    bottomImagesLayout->addWidget(image, 0, Qt::AlignRight);
+}
+
 void MainWindow::bottomSearchReturnPressed()
 {
-    imageToMiddleLayout(bottomSearch->text());
+    imageTobottomImagesLayout(bottomSearch->text());
 }
 
 void MainWindow::bottomApplyButtonClicked()
 {
-    imageToMiddleLayout(bottomSearch->text());
+    imageTobottomImagesLayout(bottomSearch->text());
 }
 
 void MainWindow::bottomSearchButtonClicked()
 {
-    QString imagePath = QFileDialog::getOpenFileName();
-    imageToMiddleLayout(imagePath);
+//    QString imagePath = QFileDialog::getOpenFileName();
+//    imageTobottomImagesLayout(imagePath);
+    bottomCurrentDirectory = QDir(QFileDialog::getExistingDirectory());
+}
+
+// ========================================
+// Bottom Layout:
+// ========================================
+
+void MainWindow::centralSearchButtonClicked()
+{
+    bigImagePath = QFileDialog::getOpenFileName();
+    centralSearch->setText(bigImagePath);
+    repaint();
+}
+
+void MainWindow::centralApplyButtonClicked()
+{
+    bigImagePath = centralSearch->text();
+    repaint();
+}
+
+void MainWindow::centralSearchReturnPressed()
+{
+    bigImagePath = centralSearch->text();
+    repaint();
+}
+
+void MainWindow::resetButtonClicked()
+{
+    while (QLayoutItem *item = topImagesLayout->takeAt(0))
+        delete item->widget();
+    while (QLayoutItem *item = bottomImagesLayout->takeAt(0))
+        delete item->widget();
+
+    addSpacerItems();
 }
