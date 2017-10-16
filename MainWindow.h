@@ -69,8 +69,9 @@ class MainWindow : public QMainWindow
         QHBoxLayout *bottomSearchLayout;
 
         CentralImage* newImage(QString path);
-        QString searchImage(QString name, QDir directory);
-        void imageToLayout(QString path, QHBoxLayout* layout);
+        QString searchImage(QDir directory, QString name);
+        void imageToMiddleLayout(QString path);
+        void imageToTopLayout(QString path);
 
         CentralImage *smallImage;
         

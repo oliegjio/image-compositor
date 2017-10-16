@@ -146,16 +146,16 @@ void MainWindow::imageToMiddleLayout(QString path)
     middleLayout->addWidget(image, 0, Qt::AlignRight);
 }
 
-void MainWindow::imageToLayout(QString path, QHBoxLayout* layout)
+void MainWindow::imageToTopLayout(QString path)
 {
     if (path.isEmpty()) return;
 
     CentralImage* image = newImage(path);
 
-    layout->addWidget(image, 0, Qt::AlignLeft);
+    topLayout->addWidget(image, 0, Qt::AlignLeft);
 
-    layout->removeItem(spacerTopLayout);
-    layout->insertItem(1000, spacerTopLayout);
+    topLayout->removeItem(spacerTopLayout);
+    topLayout->insertItem(1000, spacerTopLayout);
 }
 
 QString MainWindow::searchImage(QDir directory, QString name)
@@ -177,7 +177,7 @@ QString MainWindow::searchImage(QDir directory, QString name)
 void MainWindow::topHandleButtonAndSearch()
 {
     QString path = searchImage(topCurrentDirectory, topSearch->text());
-    if (path != "") imageToLayout(path, topLayout);
+    if (path != "") imageToTopLayout(path);
 }
 
 void MainWindow::topSearchButtonClicked()
@@ -187,16 +187,16 @@ void MainWindow::topSearchButtonClicked()
 
 void MainWindow::bottomSearchReturnPressed()
 {
-    imageToLayout(bottomSearch->text(), middleLayout);
+    imageToMiddleLayout(bottomSearch->text());
 }
 
 void MainWindow::bottomApplyButtonClicked()
 {
-    imageToLayout(bottomSearch->text(), middleLayout);
+    imageToMiddleLayout(bottomSearch->text());
 }
 
 void MainWindow::bottomSearchButtonClicked()
 {
     QString imagePath = QFileDialog::getOpenFileName();
-    imageToLayout(imagePath, middleLayout);
+    imageToMiddleLayout(imagePath);
 }
