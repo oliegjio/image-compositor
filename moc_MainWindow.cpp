@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[11];
-    char stringdata0[236];
+    QByteArrayData data[9];
+    char stringdata0[189];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,24 +34,20 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 18), // "resetButtonClicked"
 QT_MOC_LITERAL(2, 30, 0), // ""
-QT_MOC_LITERAL(3, 31, 26), // "centralSearchReturnPressed"
-QT_MOC_LITERAL(4, 58, 26), // "centralSearchButtonClicked"
-QT_MOC_LITERAL(5, 85, 25), // "centralApplyButtonClicked"
-QT_MOC_LITERAL(6, 111, 25), // "bottomSearchReturnPressed"
-QT_MOC_LITERAL(7, 137, 24), // "bottomApplyButtonClicked"
-QT_MOC_LITERAL(8, 162, 25), // "bottomSearchButtonClicked"
-QT_MOC_LITERAL(9, 188, 22), // "topSearchButtonClicked"
-QT_MOC_LITERAL(10, 211, 24) // "topHandleButtonAndSearch"
+QT_MOC_LITERAL(3, 31, 26), // "centralSearchButtonClicked"
+QT_MOC_LITERAL(4, 58, 28), // "handleCentralButtonAndSearch"
+QT_MOC_LITERAL(5, 87, 25), // "bottomSearchButtonClicked"
+QT_MOC_LITERAL(6, 113, 27), // "handleBottomButtonAndSearch"
+QT_MOC_LITERAL(7, 141, 22), // "topSearchButtonClicked"
+QT_MOC_LITERAL(8, 164, 24) // "handleTopButtonAndSearch"
 
     },
     "MainWindow\0resetButtonClicked\0\0"
-    "centralSearchReturnPressed\0"
     "centralSearchButtonClicked\0"
-    "centralApplyButtonClicked\0"
-    "bottomSearchReturnPressed\0"
-    "bottomApplyButtonClicked\0"
+    "handleCentralButtonAndSearch\0"
     "bottomSearchButtonClicked\0"
-    "topSearchButtonClicked\0topHandleButtonAndSearch"
+    "handleBottomButtonAndSearch\0"
+    "topSearchButtonClicked\0handleTopButtonAndSearch"
 };
 #undef QT_MOC_LITERAL
 
@@ -61,7 +57,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -69,19 +65,15 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x08 /* Private */,
-       3,    0,   60,    2, 0x08 /* Private */,
-       4,    0,   61,    2, 0x08 /* Private */,
-       5,    0,   62,    2, 0x08 /* Private */,
-       6,    0,   63,    2, 0x08 /* Private */,
-       7,    0,   64,    2, 0x08 /* Private */,
-       8,    0,   65,    2, 0x08 /* Private */,
-       9,    0,   66,    2, 0x08 /* Private */,
-      10,    0,   67,    2, 0x08 /* Private */,
+       1,    0,   49,    2, 0x08 /* Private */,
+       3,    0,   50,    2, 0x08 /* Private */,
+       4,    0,   51,    2, 0x08 /* Private */,
+       5,    0,   52,    2, 0x08 /* Private */,
+       6,    0,   53,    2, 0x08 /* Private */,
+       7,    0,   54,    2, 0x08 /* Private */,
+       8,    0,   55,    2, 0x08 /* Private */,
 
  // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -100,14 +92,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->resetButtonClicked(); break;
-        case 1: _t->centralSearchReturnPressed(); break;
-        case 2: _t->centralSearchButtonClicked(); break;
-        case 3: _t->centralApplyButtonClicked(); break;
-        case 4: _t->bottomSearchReturnPressed(); break;
-        case 5: _t->bottomApplyButtonClicked(); break;
-        case 6: _t->bottomSearchButtonClicked(); break;
-        case 7: _t->topSearchButtonClicked(); break;
-        case 8: _t->topHandleButtonAndSearch(); break;
+        case 1: _t->centralSearchButtonClicked(); break;
+        case 2: _t->handleCentralButtonAndSearch(); break;
+        case 3: _t->bottomSearchButtonClicked(); break;
+        case 4: _t->handleBottomButtonAndSearch(); break;
+        case 5: _t->topSearchButtonClicked(); break;
+        case 6: _t->handleTopButtonAndSearch(); break;
         default: ;
         }
     }
@@ -139,13 +129,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 7;
     }
     return _id;
 }

@@ -27,16 +27,14 @@ class MainWindow : public QMainWindow
     private slots:
         void resetButtonClicked();
 
-        void centralSearchReturnPressed();
         void centralSearchButtonClicked();
-        void centralApplyButtonClicked();
+        void handleCentralButtonAndSearch();
 
-        void bottomSearchReturnPressed();
-        void bottomApplyButtonClicked();
         void bottomSearchButtonClicked();
+        void handleBottomButtonAndSearch();
 
         void topSearchButtonClicked();
-        void topHandleButtonAndSearch();
+        void handleTopButtonAndSearch();
         
     private:
         QSize *initialSize;
@@ -49,9 +47,10 @@ class MainWindow : public QMainWindow
         QPushButton *resetButton;
         QPushButton *centralSearchButton;
         QPushButton *centralApplyButton;
-        QString bigImagePath;
-        QLabel *bigImage;
+        QLabel *centralImage;
         QLineEdit *centralSearch;
+        QString centralImagePath;
+        QDir centralCurrentDirectory;
 
         QSpacerItem *spacertopImagesLayout;
         QSpacerItem *spacercontrolsWrapperLayout;
@@ -71,8 +70,8 @@ class MainWindow : public QMainWindow
 
         CentralImage* newImage(QString path);
         QString searchImage(QDir directory, QString name);
-        void imageTobottomImagesLayout(QString path);
-        void imageTotopImagesLayout(QString path);
+        void imageToBottomImagesLayout(QString path);
+        void imageToTopImagesLayout(QString path);
 
         CentralImage *smallImage;
         

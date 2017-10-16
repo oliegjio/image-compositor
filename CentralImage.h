@@ -17,7 +17,7 @@ class CentralImage : public QLabel
         QPushButton *closeButton;
         MainWindow *father;
     private slots:
-        void handleCloseButton();
+        void closeButtonClicked();
     protected:
         void mousePressEvent(QMouseEvent *event);
 };

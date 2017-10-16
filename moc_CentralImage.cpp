@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CentralImage_t {
     QByteArrayData data[3];
-    char stringdata0[32];
+    char stringdata0[33];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,11 +32,11 @@ struct qt_meta_stringdata_CentralImage_t {
 static const qt_meta_stringdata_CentralImage_t qt_meta_stringdata_CentralImage = {
     {
 QT_MOC_LITERAL(0, 0, 12), // "CentralImage"
-QT_MOC_LITERAL(1, 13, 17), // "handleCloseButton"
-QT_MOC_LITERAL(2, 31, 0) // ""
+QT_MOC_LITERAL(1, 13, 18), // "closeButtonClicked"
+QT_MOC_LITERAL(2, 32, 0) // ""
 
     },
-    "CentralImage\0handleCloseButton\0"
+    "CentralImage\0closeButtonClicked\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,7 +68,7 @@ void CentralImage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         CentralImage *_t = static_cast<CentralImage *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->handleCloseButton(); break;
+        case 0: _t->closeButtonClicked(); break;
         default: ;
         }
     }
