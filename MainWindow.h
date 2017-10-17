@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include "CentralImage.h"
+#include "TopControlsLayout.h"
+#include "Helpers.h"
 #include <QMainWindow>
 #include <QLabel>
 #include <QPushButton>
@@ -24,65 +26,65 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-    private slots:
-        void resetButtonClicked();
+private slots:
+    void resetButtonClicked();
 
-        void centralSearchButtonClicked();
-        void handleCentralButtonAndSearch();
+    void centralSearchButtonClicked();
+    void handleCentralButtonAndSearch();
 
-        void bottomSearchButtonClicked();
-        void handleBottomButtonAndSearch();
+    void bottomSearchButtonClicked();
+    void handleBottomButtonAndSearch();
 
-        void topSearchButtonClicked();
-        void handleTopButtonAndSearch();
-        
-    private:
-        QSize *initialSize;
-        QWidget *interfaceArea;
+    void topSearchButtonClicked();
+    void handleTopButtonAndSearch();
 
-        QRegExp extensions;
+private:
+    QSize *initialSize;
+    QWidget *interfaceArea;
 
-        QVBoxLayout *mainLayout;
+    QRegExp extensions;
 
-        QPushButton *resetButton;
-        QPushButton *centralSearchButton;
-        QPushButton *centralApplyButton;
-        QLabel *centralImage;
-        QLineEdit *centralSearch;
-        QString centralImagePath;
-        QDir centralCurrentDirectory;
+    QVBoxLayout *mainLayout;
 
-        QSpacerItem *spacertopImagesLayout;
-        QSpacerItem *spacercontrolsWrapperLayout;
-        void addSpacerItems();
-        
-        QPushButton *topSearchButton;
-        QPushButton *topApplyButton;
-        QLineEdit *topSearch;
-        QHBoxLayout *topControlsLayout;
-        QDir topCurrentDirectory;
+    QPushButton *resetButton;
+    QPushButton *centralSearchButton;
+    QPushButton *centralApplyButton;
+    QLabel *centralImage;
+    QLineEdit *centralSearch;
+    QString centralImagePath;
+    QDir centralCurrentDirectory;
 
-        QPushButton *bottomApplyButton;
-        QPushButton *bottomSearchButton;
-        QLineEdit *bottomSearch;
-        QHBoxLayout *bottomControlsLayout;
-        QDir bottomCurrentDirectory;
+    QSpacerItem *spacerTopImagesLayout;
+    QSpacerItem *spacerControlsWrapperLayout;
+    void addSpacerItems();
 
-        CentralImage* newImage(QString path);
-        QString searchImage(QDir directory, QString name);
-        void imageToBottomImagesLayout(QString path);
-        void imageToTopImagesLayout(QString path);
+//    QPushButton *topSearchButton;
+//    QPushButton *topApplyButton;
+//    QLineEdit *topSearch;
+    QHBoxLayout *topControlsLayout;
+//    QDir topCurrentDirectory;
 
-        CentralImage *smallImage;
-        
-    public:
-        QHBoxLayout *topImagesLayout;
-        QHBoxLayout *bottomImagesLayout;
-        QVBoxLayout *controlsWrapperLayout;
-        MainWindow();
-        
-    protected:
-        void paintEvent(QPaintEvent *event);
+    QPushButton *bottomApplyButton;
+    QPushButton *bottomSearchButton;
+    QLineEdit *bottomSearch;
+    QHBoxLayout *bottomControlsLayout;
+    QDir bottomCurrentDirectory;
+
+//    CentralImage* newImage(QString path);
+//    QString searchImage(QDir directory, QString name);
+    void imageToBottomImagesLayout(QString path);
+//    void imageToTopImagesLayout(QString path);
+
+    CentralImage *smallImage;
+
+public:
+    QHBoxLayout *topImagesLayout;
+    QHBoxLayout *bottomImagesLayout;
+    QVBoxLayout *controlsWrapperLayout;
+    MainWindow();
+
+protected:
+    void paintEvent(QPaintEvent *event);
 };
 
 #endif

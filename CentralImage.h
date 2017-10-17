@@ -11,15 +11,18 @@ class CentralImage : public QLabel
 {
     Q_OBJECT
 
-    public:
-        CentralImage(MainWindow *parent);
-    private:
-        QPushButton *closeButton;
-        MainWindow *father;
-    private slots:
-        void closeButtonClicked();
-    protected:
-        void mousePressEvent(QMouseEvent *event);
+public:
+    CentralImage(MainWindow *parent);
+
+private:
+    QPushButton *closeButton;
+    MainWindow *father;
+
+private slots:
+    void closeButtonClicked();
+
+protected:
+    void mousePressEvent(QMouseEvent *event);
 };
 
 #endif
